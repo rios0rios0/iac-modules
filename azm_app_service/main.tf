@@ -75,20 +75,3 @@ resource "null_resource" "scm_integration" {
     interpreter = ["pwsh", "-Command"]
   }
 }
-
-## PROTECTION
-resource "random_id" "destroy_protection" {
-  count       = var.destroy_protection ? 1 : 0
-  byte_length = 8
-
-  keepers = {
-    azurerm_resource_group                   = azurerm_resource_group.default.id
-    azurerm_app_service_plan                 = azurerm_app_service_plan.default.id
-    azurerm_app_service                      = azurerm_app_service.default.id
-    azurerm_app_service_source_control_token = azurerm_app_service_source_control_token.default.id
-  }
-
-  lifecycle {
-    prevent_destroy = true
-  }
-}

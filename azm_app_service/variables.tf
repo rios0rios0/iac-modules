@@ -26,11 +26,6 @@ variable "github_token" {
   description = "GitHub token to authenticate on private repositories."
 }
 
-variable "destroy_protection" {
-  type        = bool
-  description = "Destroy protection for critical environments."
-}
-
 variable "tags" {
   type        = map(string)
   description = "Default tags to attach to the resource."
