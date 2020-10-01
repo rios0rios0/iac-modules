@@ -1,14 +1,14 @@
 resource "azurerm_resource_group" "default" {
-  name     = "${terraform.workspace}-${var.stack}-rg"
+  name     = "${var.environment}-${var.stack}-rg"
   location = var.region
 
   tags = merge(map(
-    "Name", "${terraform.workspace}-${var.stack}-rg"
+    "Name", "${var.environment}-${var.stack}-rg"
   ), var.tags)
 }
 
 resource "azurerm_app_service_plan" "default" {
-  name                = "${terraform.workspace}-${var.name}-appsp"
+  name                = "${var.environment}-${var.name}-appsp"
   location            = azurerm_resource_group.default.location
   resource_group_name = azurerm_resource_group.default.name
 
@@ -18,12 +18,12 @@ resource "azurerm_app_service_plan" "default" {
   }
 
   tags = merge(map(
-    "Name", "${terraform.workspace}-${var.name}-appsp"
+    "Name", "${var.environment}-${var.name}-appsp"
   ), var.tags)
 }
 
 resource "azurerm_app_service" "default" {
-  name                = "${terraform.workspace}-${var.name}-app"
+  name                = "${var.environment}-${var.name}-app"
   location            = azurerm_resource_group.default.location
   resource_group_name = azurerm_resource_group.default.name
   app_service_plan_id = azurerm_app_service_plan.default.id
@@ -52,7 +52,7 @@ resource "azurerm_app_service" "default" {
   }
 
   tags = merge(map(
-    "Name", "${terraform.workspace}-${var.name}-app"
+    "Name", "${var.environment}-${var.name}-app"
   ), var.tags)
 }
 
