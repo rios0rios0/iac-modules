@@ -1,4 +1,4 @@
-output "resource_group" {
+output "id_resource_group" {
   description = "The id of the resource group"
   value       = azurerm_resource_group.default.id
 }

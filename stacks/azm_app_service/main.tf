@@ -1,4 +1,4 @@
-module "webapp" {
+module "app" {
   source = "../../modules/azm_app_service"
 
   region             = var.region
