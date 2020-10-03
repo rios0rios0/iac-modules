@@ -5,7 +5,7 @@ on:
 
 jobs:
   push_to_registry:
-    name: Push Docker image to GitHub Packages
+    name: Push Docker Images to GitHub Packages
     runs-on: ubuntu-latest
     steps:
       - name: Check out
