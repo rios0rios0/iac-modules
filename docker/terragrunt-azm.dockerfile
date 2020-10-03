@@ -13,4 +13,4 @@ RUN curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor |
     echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | tee /etc/apt/sources.list.d/azure-cli.list
 RUN apt update && apt install -y azure-cli
 
-ENTRYPOINT ["/usr/local/bin/terragrunt"]
+ENTRYPOINT ["entrypoint.sh"]
