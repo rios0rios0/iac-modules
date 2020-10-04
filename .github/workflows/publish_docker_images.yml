@@ -28,9 +28,14 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build/Push to GitHub Packages (terragrunt-azm)
+      - name: Build/Push to GitHub Packages
         env:
-          URI: ${{ steps.setup.outputs.uri_prefix }}/terragrunt-azm:${{ steps.setup.outputs.version }}
+          VERSION: ${{ steps.setup.outputs.version }}
+          IMAGES: terragrunt-aws,terragrunt-azm
+        shell: bash
         run: |
-          docker build -t ${{ env.URI }} -f ./docker/terragrunt-azm.dockerfile .
-          docker push ${{ env.URI }}
+          for image in $(echo '${{ env.IMAGES }}' | sed "s/,/ /g"); do
+            uri=${{ steps.setup.outputs.uri_prefix }}/$image
+            docker build -t $uri:${{ env.VERSION }} -t $uri:latest -f ./containers/$image.dockerfile ./containers
+            docker push $uri:${{ env.VERSION }}
+          done
