@@ -14,4 +14,4 @@ RUN curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor |
 RUN apt update && apt install -y azure-cli
 
 COPY entrypoint.sh /
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]

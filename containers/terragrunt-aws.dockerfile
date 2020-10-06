@@ -7,4 +7,4 @@ RUN wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.25.2/te
 RUN apk add git py-pip && pip install awscli
 
 COPY entrypoint.sh /
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]

@@ -1,5 +1,10 @@
 #!/usr/bin/env sh
 
-command="$1"
+first="$1"
 shift
-eval "$command $@"
+if [ -d "$first" ]
+then
+    cd $first && eval "$@"
+else
+    eval "$first $@"
+fi
