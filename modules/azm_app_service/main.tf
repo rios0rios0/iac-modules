@@ -51,6 +51,18 @@ resource "azurerm_app_service" "default" {
     ]
   }
 
+  dynamic "storage_account" {
+    for_each = var.enable_storage_account ? [1] : []
+    content {
+      name         = "${var.environment}-${var.name}-app-unique-mapping"
+      type         = "AzureFiles"
+      account_name = var.storage_account_name
+      share_name   = "${var.environment}-${var.name}-app"
+      access_key   = var.storage_account_access_key
+      mount_path   = var.storage_account_path
+    }
+  }
+
   tags = merge(map(
     "Name", "${var.environment}-${var.name}-app"
   ), var.tags)
