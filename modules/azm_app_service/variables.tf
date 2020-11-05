@@ -30,6 +30,30 @@ variable "github_token" {
   description = "GitHub token to authenticate on private repositories."
 }
 
+variable "enable_storage_account" {
+  type        = bool
+  description = "Enable storage account feature for this web application."
+  default     = false
+}
+
+variable "storage_account_name" {
+  type        = string
+  description = "The name of the storage account (unique identifier for existing storage account)."
+  default     = ""
+}
+
+variable "storage_account_path" {
+  type        = string
+  description = "The path of site to mount inside the storage container."
+  default     = "/"
+}
+
+variable "storage_account_access_key" {
+  type        = string
+  description = "The access key for the storage account (inside access keys configuration of storage account)."
+  default     = ""
+}
+
 variable "tags" {
   type        = map(string)
   description = "Default tags to attach to the resource."
