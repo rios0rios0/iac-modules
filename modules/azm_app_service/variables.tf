@@ -16,7 +16,7 @@ variable "name" {
 }
 
 variable "app_settings" {
-  type = object({})
+  type = map(string)
   default = {}
   description = "A key-value pair of App Settings."
 }
