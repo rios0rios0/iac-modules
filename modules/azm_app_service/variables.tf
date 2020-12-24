@@ -15,6 +15,12 @@ variable "name" {
   default = "default"
 }
 
+variable "app_settings" {
+  type = object({})
+  default = {}
+  description = "A key-value pair of App Settings."
+}
+
 variable "github_branch" {
   type        = string
   description = "GitHub branch of repository selected."
