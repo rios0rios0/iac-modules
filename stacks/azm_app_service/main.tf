@@ -4,6 +4,7 @@ module "app" {
   region                     = var.region
   stack                      = var.stack
   environment                = var.environment
+  app_settings               = var.app_settings
   github_branch              = var.github_branch
   github_repository          = var.github_repository
   github_token               = var.github_token
