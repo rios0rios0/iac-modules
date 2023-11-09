@@ -3,7 +3,7 @@ resource "azurerm_resource_group" "default" {
   location = var.location
 
   tags = merge(map(
-    "Name", "default-rg"
+    "Name", var.resource_group_name
   ), var.tags)
 }
 
