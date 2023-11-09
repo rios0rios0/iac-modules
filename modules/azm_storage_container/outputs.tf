@@ -18,12 +18,12 @@ output "storage_account_name" {
   description = "The name of the storage account."
 }
 
-output "storage_container_name" {
-  value       = azurerm_storage_container.default.name
-  description = "The name of the storage container."
-}
-
 output "storage_container_id" {
   value       = azurerm_storage_container.default.id
   description = "The id of the storage container."
+}
+
+output "storage_container_name" {
+  value       = azurerm_storage_container.default.name
+  description = "The name of the storage container."
 }
