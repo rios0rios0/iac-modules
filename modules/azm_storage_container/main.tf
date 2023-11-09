@@ -2,7 +2,7 @@ resource "azurerm_resource_group" "default" {
   name     = var.resource_group_name
   location = var.location
 
-  tags = merge(map(
+  tags = merge(tomap(
     "Name", var.resource_group_name
   ), var.tags)
 }
@@ -14,7 +14,7 @@ resource "azurerm_storage_account" "default" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
 
-  tags = merge(map(
+  tags = merge(tomap(
     "Name", var.storage_account_name
   ), var.tags)
 }
