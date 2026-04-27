@@ -49,11 +49,11 @@ iac-modules/
 
 | Component | Version / Details |
 |---|---|
-| Terraform | 1.6.3 |
+| Terraform | 1.6.6 (AWS image), 1.6.3 (Azure image) |
 | Terragrunt | 0.53.2 |
 | Azure Provider | `azurerm` (latest) |
 | PowerShell Core | `pwsh` — used for SCM integration scripts |
-| Docker | Runner images based on `hashicorp/terraform:1.6.3` |
+| Docker | `hashicorp/terraform:1.6.6` base (AWS), `azurestack/powershell` base (Azure) |
 | Azure CLI | Installed in `terragrunt-azm` image |
 | AWS CLI | Installed in `terragrunt-aws` image |
 
