@@ -1,5 +1,13 @@
 ## [Unreleased]
 
+### Added
+
+- created `CLAUDE.md` with build commands, architecture overview, naming conventions, and CI/CD references
+
+### Changed
+
+- refreshed `.github/copilot-instructions.md` to document the `release.yaml` workflow added in the CI/CD section
+
 ## [0.1.0] - 2026-04-28
 
 ### Changed

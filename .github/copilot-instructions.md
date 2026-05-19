@@ -126,6 +126,11 @@ The `azm_app_service` module uses a PowerShell `local-exec` provisioner (`script
 - **Action:** Builds both `terragrunt-aws` and `terragrunt-azm` Docker images and pushes them to GitHub Packages (`docker.pkg.github.com`) tagged with the release version and `latest`.
 - **Registry:** `ghcr.io/rios0rios0/iac-modules/<image-name>` (the workflow currently uses the legacy `docker.pkg.github.com` endpoint — update to `ghcr.io` when modernizing the pipeline)
 
+**Workflow:** `.github/workflows/release.yaml`
+
+- **Trigger:** Push to `main`
+- **Action:** Calls the reusable release workflow from `rios0rios0/pipelines` to create version tags.
+
 No CI validation workflow runs on pull requests at present; validation is done locally by the developer before opening a PR.
 
 ## Coding Conventions
