@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.2.0] - 2026-05-19
+
 ### Added
 
 - created `CLAUDE.md` with build commands, architecture overview, naming conventions, and CI/CD references
