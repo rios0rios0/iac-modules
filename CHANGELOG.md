@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.2.1] - 2026-07-20
+
 ### Changed
 
 - corrected `.github/copilot-instructions.md` to run `terraform validate` from within a module directory instead of the repository root
