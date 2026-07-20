@@ -62,11 +62,12 @@ iac-modules/
 1. Fork and clone the repository.
 2. Create a feature branch: `git checkout -b feat/my-change`
 3. Make changes to the relevant module or stack.
-4. **Validate and format** (run from the repository root):
+4. **Format and validate:**
    ```bash
-   terraform fmt -recursive   # auto-format all .tf files
-   terraform validate         # validate syntax and configuration
+   terraform fmt -recursive   # auto-format all .tf files (run from repo root)
+   cd modules/<name> && terraform validate   # validate from within the module directory
    ```
+   `terraform validate` must run inside a module directory — the repo has no root-level `.tf` files.
 5. Update `CHANGELOG.md` under the `[Unreleased]` section.
 6. Commit following the [commit conventions](https://github.com/rios0rios0/guide/wiki/Life-Cycle/Git-Flow) (Conventional Commits: `feat:`, `fix:`, `chore:`, etc.).
 7. Open a pull request against `main`.
