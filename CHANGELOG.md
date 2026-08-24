@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.2.2] - 2026-08-24
+
 ### Changed
 
 - refreshed `.github/copilot-instructions.md` to add `release.yaml` and the stack's `variables.tf` to the repository structure tree
