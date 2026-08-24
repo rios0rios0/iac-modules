@@ -10,7 +10,8 @@
 iac-modules/
 ├── .github/
 │   └── workflows/
-│       └── publish_docker_images.yml  # CI/CD: builds and publishes Docker images on release
+│       ├── publish_docker_images.yml  # CI/CD: builds and publishes Docker images on release
+│       └── release.yaml               # CI/CD: tags releases via rios0rios0/pipelines on push to main
 ├── containers/
 │   ├── entrypoint.sh                  # Flexible entrypoint (directory or command invocation mode)
 │   ├── terragrunt-aws.Dockerfile      # Terraform + Terragrunt + AWS CLI runner image
@@ -33,6 +34,7 @@ iac-modules/
 ├── stacks/
 │   └── azm_app_service/               # Pre-composed App Service stack for direct Terragrunt use
 │       ├── main.tf
+│       ├── variables.tf
 │       └── outputs.tf
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
