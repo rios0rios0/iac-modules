@@ -70,7 +70,7 @@ iac-modules/
    cd modules/<name> && terraform validate   # validate from within the module directory
    ```
    `terraform validate` must run inside a module directory — the repo has no root-level `.tf` files.
-5. Update `CHANGELOG.md` under the `[Unreleased]` section.
+5. Add a changelog fragment: `chlog new --kind <Kind> --body "..."`. Never edit `CHANGELOG.md` — it is generated from the fragments.
 6. Commit following the [commit conventions](https://github.com/rios0rios0/guide/wiki/Life-Cycle/Git-Flow) (Conventional Commits: `feat:`, `fix:`, `chore:`, etc.).
 7. Open a pull request against `main`.
 
@@ -143,7 +143,7 @@ No CI validation workflow runs on pull requests at present; validation is done l
 - Always run `terraform validate` from the module directory to catch syntax errors before committing.
 - Keep modules focused: one module = one logical resource or tightly coupled resource group.
 - Document every variable and output with a `description` attribute.
-- Record all user-visible changes in `CHANGELOG.md` under `[Unreleased]` using [Keep a Changelog](https://keepachangelog.com/) format.
+- Record all user-visible changes as a [chlog](https://github.com/luizjhonata/chlog) fragment (`chlog new --kind <Kind> --body "..."`); `CHANGELOG.md` is generated from them at release time.
 
 ## Common Tasks
 
@@ -153,7 +153,7 @@ No CI validation workflow runs on pull requests at present; validation is done l
 2. Add `main.tf`, `variables.tf`, and `outputs.tf`.
 3. Document variables and outputs with `description` attributes.
 4. Run `terraform fmt -recursive` and `terraform validate` inside the new directory.
-5. Add an entry under `[Unreleased]` in `CHANGELOG.md`.
+5. Add a changelog fragment: `chlog new --kind Added --body "added the <module> module"`.
 
 ### Add a new stack
 
@@ -172,3 +172,28 @@ No CI validation workflow runs on pull requests at present; validation is done l
 - **`terraform validate` fails after `fmt`:** Ensure you are running `validate` from within the module directory, not the repository root (which has no root-level `.tf` files).
 - **Docker image build fails:** Check that the `containers/` context path is provided correctly — the build context must be `containers/`, not the repo root.
 - **PowerShell provisioner fails:** Verify that `pwsh` (PowerShell Core) is installed in the execution environment or use the `terragrunt-azm` Docker image which includes it.
+
+<!-- chlog:start -->
+## Changelog (chlog) — MANDATORY
+
+If the repository you are working in uses chlog (a `.chlog.yaml` or `.chlog.yml`
+config file, or a `.changes/` directory, exists at the project root), the
+following is binding and ALWAYS applies: whenever you make ANY change, you MUST
+create a changelog fragment as part of the same change — automatically, without
+being asked, before committing.
+
+- Do NOT edit CHANGELOG.md directly; it is generated from fragments.
+- Create the fragment with:
+  `chlog new --kind <Kind> --body "<imperative description>"`
+- Valid kinds: Added, Changed, Deprecated, Removed, Fixed, Security
+- Choose the kind that best matches the change (e.g., new feature → Added,
+  bug fix → Fixed, behavior change → Changed, removal → Removed, security fix → Security).
+- If the change is backward-INCOMPATIBLE with the public API (a breaking
+  change), you MUST add the `--breaking` flag:
+  `chlog new --kind <Kind> --breaking --body "<description>"`.
+  This is the ONLY thing that triggers a major version bump — the kind alone
+  never does (per SemVer, major = incompatible change). When unsure whether a
+  change breaks compatibility, ask the user instead of guessing.
+- Fragments are YAML files in `.changes/unreleased/`; stage them with your commit.
+- `chlog check` fails the build when a fragment is missing — never skip it.
+<!-- chlog:end -->

@@ -8,6 +8,7 @@ development practices, refer to the **[Development Guide](https://github.com/rio
 ## Prerequisites
 
 - [Terraform](https://developer.hashicorp.com/terraform/install) 1.0+
+- [chlog](https://github.com/luizjhonata/chlog) (`go install github.com/luizjhonata/chlog@latest`)
 
 ## Development Workflow
 
@@ -19,6 +20,9 @@ development practices, refer to the **[Development Guide](https://github.com/rio
    terraform fmt -recursive
    terraform validate
    ```
-5. Update `CHANGELOG.md` under `[Unreleased]`
+5. Add a changelog fragment — never edit `CHANGELOG.md`, which is generated from them:
+   ```bash
+   chlog new --kind Added --body "added the thing that was not there before"
+   ```
 6. Commit following the [commit conventions](https://github.com/rios0rios0/guide/wiki/Life-Cycle/Git-Flow)
 7. Open a pull request against `main`
