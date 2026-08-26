@@ -1,3 +1,11 @@
+# Changelog
+
+This file is not edited by hand. Every change writes its own fragment under
+`.changes/unreleased/` with [chlog](https://github.com/luizjhonata/chlog), and a release compiles
+the pending fragments into a version section here — so two branches each adding an entry no
+longer touch the same lines, and a rebase that used to conflict on this file now conflicts on
+nothing.
+
 ## [Unreleased]
 
 ## [0.2.2] - 2026-08-24
