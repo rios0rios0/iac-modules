@@ -134,7 +134,7 @@ The `azm_app_service` module uses a PowerShell `local-exec` provisioner (`script
 - **Trigger:** Push to `main`
 - **Action:** Calls the reusable release workflow from `rios0rios0/pipelines` to create version tags.
 
-No CI validation workflow runs on pull requests at present; validation is done locally by the developer before opening a PR.
+No Terraform validation workflow runs on pull requests at present; validation is done locally by the developer before opening a PR. The Claude review workflow (`.github/workflows/claude-review.yaml`) does run on every pull request, but it reviews the change rather than validating the modules.
 
 ## Coding Conventions
 
