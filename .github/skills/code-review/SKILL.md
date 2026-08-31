@@ -79,7 +79,7 @@ them before the generic ones.
 ```bash
 terraform fmt -recursive                 # from the repository root
 cd modules/<name> && terraform init -backend=false && terraform validate
-docker build -f containers/terragrunt-azm.Dockerfile .
+docker build -f containers/terragrunt-azm.Dockerfile containers/  # context is containers/, not the repo root
 ```
 
 ### YAML

@@ -1,0 +1,3 @@
+kind: 'Changed'
+body: 'refreshed `CLAUDE.md`, `.github/copilot-instructions.md`, and `.github/skills/code-review/SKILL.md` to match the current codebase: documented the `claude-review.yaml` and `claude-mention.yaml` workflows, corrected the "add a new stack" guidance to use a repo-relative `source` with a symlinked `variables.tf` (not the external GitHub path), and fixed the review skill''s `docker build` context to `containers/`'
+time: '2026-09-01T16:54:33.739729547Z'
