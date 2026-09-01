@@ -10,6 +10,8 @@
 iac-modules/
 ├── .github/
 │   └── workflows/
+│       ├── claude-mention.yaml        # Responds to @claude mentions via rios0rios0/pipelines
+│       ├── claude-review.yaml         # Reviews every pull request via rios0rios0/pipelines
 │       ├── publish_docker_images.yml  # CI/CD: builds and publishes Docker images on release
 │       └── release.yaml               # CI/CD: tags releases via rios0rios0/pipelines on push to main
 ├── containers/
@@ -158,8 +160,8 @@ No Terraform validation workflow runs on pull requests at present; validation is
 ### Add a new stack
 
 1. Create a directory under `stacks/` (e.g., `stacks/azm_my_stack/`).
-2. Reference the relevant module(s) using the GitHub source path: `github.com/rios0rios0/iac-modules//modules/<module_name>`.
-3. Wire all required variables in `main.tf` and expose key values in `outputs.tf`.
+2. Reference the relevant module(s) with a repo-relative `source` (e.g., `source = "../../modules/<module_name>"`), as `stacks/azm_app_service/main.tf` does — not the external `github.com/...` path. This keeps a local module edit visible to the stack without cutting a release. (External consumers use the GitHub source path; stacks in this repo do not.)
+3. Wire all required variables in `main.tf` and expose key values in `outputs.tf`. Existing stacks symlink `variables.tf` to the composed module's `variables.tf` instead of re-declaring inputs.
 
 ### Update the Terragrunt runner images
 
