@@ -8,6 +8,12 @@ nothing.
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-09-01
+
+### Changed
+
+- refreshed `CLAUDE.md`, `.github/copilot-instructions.md`, and `.github/skills/code-review/SKILL.md` to match the current codebase: documented the `claude-review.yaml` and `claude-mention.yaml` workflows, corrected the "add a new stack" guidance to use a repo-relative `source` with a symlinked `variables.tf` (not the external GitHub path), and fixed the review skill's `docker build` context to `containers/`
+
 ## [0.4.0] - 2026-08-28
 
 ### Added
