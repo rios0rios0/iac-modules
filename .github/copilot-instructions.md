@@ -16,6 +16,7 @@ iac-modules/
 │       └── release.yaml               # CI/CD: tags releases via rios0rios0/pipelines on push to main
 ├── containers/
 │   ├── entrypoint.sh                  # Flexible entrypoint (directory or command invocation mode)
+│   ├── requirements.txt               # Hash-locked AWS CLI wheel set for terragrunt-aws
 │   ├── terragrunt-aws.Dockerfile      # Terraform + Terragrunt + AWS CLI runner image
 │   └── terragrunt-azm.Dockerfile      # Terraform + Terragrunt + Azure CLI runner image
 ├── modules/
@@ -59,7 +60,7 @@ iac-modules/
 | PowerShell Core | `pwsh` — used for SCM integration scripts |
 | Docker | `hashicorp/terraform:1.6.6` base (AWS), `azurestack/powershell` base (Azure) |
 | Azure CLI | Installed in `terragrunt-azm` image |
-| AWS CLI | Installed in `terragrunt-aws` image |
+| AWS CLI | 1.46.1, hash-locked in `containers/requirements.txt` (`terragrunt-aws` image) |
 
 ## Development Workflow
 
@@ -166,8 +167,9 @@ No Terraform validation workflow runs on pull requests at present; validation is
 ### Update the Terragrunt runner images
 
 1. Modify the relevant Dockerfile in `containers/`.
-2. Rebuild and test locally (see Build Commands above).
-3. Changes are published automatically when a new GitHub release is created.
+2. To bump the AWS CLI, regenerate `containers/requirements.txt` with the new exact versions and `--hash` values (the file header shows the `pip download` / `pip hash` commands). The image installs with `--only-binary :all: --require-hashes`, so an unhashed or sdist-only dependency fails the build.
+3. Rebuild and test locally (see Build Commands above).
+4. Changes are published automatically when a new GitHub release is created.
 
 ## Troubleshooting
 

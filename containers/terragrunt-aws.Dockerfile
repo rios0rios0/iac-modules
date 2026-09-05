@@ -9,7 +9,12 @@ RUN apk add git py-pip \
     && apk cache clean \
     && rm -rf /var/cache/apk/*
 
-RUN pip install awscli
+# Hash-verified, exact-version wheels only (see requirements.txt): no sdist setup
+# script runs at build time. --break-system-packages is required because the
+# Alpine 3.19 base marks its system Python as externally managed (PEP 668).
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir --break-system-packages --only-binary :all: --require-hashes -r /tmp/requirements.txt \
+    && rm -f /tmp/requirements.txt
 
 COPY entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]

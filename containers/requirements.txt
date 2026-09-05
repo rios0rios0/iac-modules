@@ -1,0 +1,30 @@
+# Exact, hash-verified wheel set installed into the terragrunt-aws image
+# (Python 3.11 on the Alpine 3.19 base of hashicorp/terraform:1.6.6).
+# Every entry is a wheel: the image installs with --only-binary :all: and
+# --require-hashes, so no sdist setup script runs at build time and a bumped
+# or replaced file fails the build. To bump awscli, regenerate with:
+#   pip download --only-binary=:all: --python-version 3.11 --implementation cp \
+#     --abi cp311 --platform musllinux_1_2_x86_64 -d wheels awscli==<version>
+#   pip hash wheels/*.whl
+awscli==1.46.1 \
+    --hash=sha256:68701ad24347c63b5b145b7aa32391ce7e04f328057dd5aa0537a07c0d0b7cc3
+colorama==0.4.6 \
+    --hash=sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6
+docutils==0.19 \
+    --hash=sha256:5e1de4d849fee02c63b040a4a3fd567f4ab104defd8a5511fbbc24a8a017efbc
+jmespath==1.1.0 \
+    --hash=sha256:a5663118de4908c91729bea0acadca56526eb2698e83de10cd116ae0f4e97c64
+pyasn1==0.6.4 \
+    --hash=sha256:deda9277cfd454080ec40b207fb6df82206a3a2688735233cdcd8d3d565f088b
+python-dateutil==2.9.0.post0 \
+    --hash=sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427
+# PyYAML is the only compiled dependency: cp311 musllinux_1_2 wheels for x86_64 and aarch64
+PyYAML==6.0.3 \
+    --hash=sha256:37503bfbfc9d2c40b344d06b2199cf0e96e97957ab1c1b546fd4f87e53e5d3e4 \
+    --hash=sha256:1d37d57ad971609cf3c53ba6a7e365e40660e3be0e5175fa9f2365a379d6095a
+rsa==4.7.2 \
+    --hash=sha256:78f9a9bf4e7be0c5ded4583326e7461e3a3c5aae24073648b4bdfa797d78c9d2
+six==1.17.0 \
+    --hash=sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274
+urllib3==2.7.0 \
+    --hash=sha256:9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897
