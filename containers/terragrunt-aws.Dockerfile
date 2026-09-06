@@ -1,4 +1,4 @@
-FROM hashicorp/terraform:1.6.6
+FROM hashicorp/terraform:1.16.1
 LABEL name=terragrunt-aws maintainer="rios0rios0 <rios0rios0@outlook.com>" description="Terraform + Terragrunt with AWS CLI"
 
 ENV TERRAGRUNT_VER 0.53.2
