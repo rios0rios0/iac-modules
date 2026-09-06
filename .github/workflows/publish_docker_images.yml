@@ -36,6 +36,6 @@ jobs:
         run: |
           for image in $(echo '${{ env.IMAGES }}' | sed "s/,/ /g"); do
             uri=${{ steps.setup.outputs.uri_prefix }}/$image
-            docker build -t $uri:${{ env.VERSION }} -t $uri:latest -f ./containers/$image.dockerfile ./containers
+            docker build -t $uri:${{ env.VERSION }} -t $uri:latest -f ./containers/$image.Dockerfile ./containers
             docker push $uri:${{ env.VERSION }}
           done
