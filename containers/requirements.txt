@@ -1,5 +1,5 @@
 # Exact, hash-verified wheel set installed into the terragrunt-aws image
-# (Python 3.11 on the Alpine 3.19 base of hashicorp/terraform:1.6.6).
+# (Python 3.11 on the Alpine 3.19 base of hashicorp/terraform:1.16.1).
 # Every entry is a wheel: the image installs with --only-binary :all: and
 # --require-hashes, so no sdist setup script runs at build time and a bumped
 # or replaced file fails the build. To bump awscli, regenerate with:

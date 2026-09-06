@@ -30,7 +30,7 @@ docker build -t terragrunt-aws -f containers/terragrunt-aws.Dockerfile container
 
 ## Versions
 
-- Terraform: 1.6.6 (AWS image), 1.6.3 (Azure image)
+- Terraform: 1.16.1 (AWS image), 1.6.3 (Azure image)
 - Terragrunt: 0.53.2
 - AWS CLI: 1.46.1, hash-locked in `containers/requirements.txt` (AWS image)
 
