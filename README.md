@@ -30,6 +30,7 @@ A collection of reusable Terraform modules, Terragrunt container images, and pre
 iac-modules/
 ├── containers/
 │   ├── entrypoint.sh                  # Flexible entrypoint (directory or command mode)
+│   ├── requirements.txt               # Hash-locked AWS CLI wheel set for terragrunt-aws
 │   ├── terragrunt-aws.Dockerfile      # Terraform + Terragrunt + AWS CLI
 │   └── terragrunt-azm.Dockerfile      # Terraform + Terragrunt + Azure CLI
 ├── modules/
