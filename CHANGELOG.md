@@ -8,6 +8,16 @@ nothing.
 
 ## [Unreleased]
 
+## [0.5.1] - 2026-09-06
+
+### Fixed
+
+- used the correct Dockerfile filename casing (`.Dockerfile`) in `publish_docker_images.yml` build step so the workflow resolves existing files on Linux runners
+
+### Security
+
+- pinned the third-party actions in `publish_docker_images.yml` (`actions/checkout` to v7.0.1 and `docker/login-action` to v4.6.0) to their full commit SHAs, and locked the `terragrunt-aws` image's `pip install` to a hash-verified, exact-version wheel set in `containers/requirements.txt` (`awscli` 1.46.1, installed with `--only-binary :all: --require-hashes`) so no setup script runs and no unverified file is installed at build time; `--break-system-packages` was added because the image's Alpine 3.19 base marks its Python as externally managed, which already made the previous unpinned install fail. Clears SonarCloud rules githubactions:S7637, docker:S8541 and docker:S8544 on `main`
+
 ## [0.5.0] - 2026-09-02
 
 ### Added
