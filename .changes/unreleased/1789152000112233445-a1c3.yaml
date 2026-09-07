@@ -1,0 +1,3 @@
+kind: 'Changed'
+body: 'refreshed `CLAUDE.md` and `.github/copilot-instructions.md` to document the `checks.yaml` pull-request workflow'
+time: '2026-09-07T10:15:00.112233445Z'
