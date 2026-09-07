@@ -1,3 +1,0 @@
-kind: 'Fixed'
-body: 'used the correct Dockerfile filename casing (`.Dockerfile`) in `publish_docker_images.yml` build step so the workflow resolves existing files on Linux runners'
-time: '2026-09-05T20:36:42.974Z'
