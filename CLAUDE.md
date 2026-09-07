@@ -46,7 +46,7 @@ docker build -t terragrunt-aws -f containers/terragrunt-aws.Dockerfile container
 
 - `publish_docker_images.yml` — builds and pushes container images to GitHub Packages on release.
 - `release.yaml` — triggers on push to `main`, calls reusable workflow from `rios0rios0/pipelines` to create version tags.
-- `checks.yaml` — runs on every pull request via `rios0rios0/pipelines`; the shared checks job, granted `contents: read` per job.
+- `checks.yaml` — runs on pull requests targeting `main` via `rios0rios0/pipelines`; the shared checks job, granted `contents: read` per job.
 - `claude-review.yaml` — runs on every pull request via `rios0rios0/pipelines`; reviews the change, does not validate the modules.
 - `claude-mention.yaml` — responds to `@claude` mentions on issues, PRs, and reviews.
 - No Terraform validation workflow runs on PRs; validate locally.

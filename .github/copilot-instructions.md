@@ -10,7 +10,7 @@
 iac-modules/
 ├── .github/
 │   └── workflows/
-│       ├── checks.yaml                # Runs shared checks on every pull request via rios0rios0/pipelines
+│       ├── checks.yaml                # Runs shared checks on pull requests targeting main via rios0rios0/pipelines
 │       ├── claude-mention.yaml        # Responds to @claude mentions via rios0rios0/pipelines
 │       ├── claude-review.yaml         # Reviews every pull request via rios0rios0/pipelines
 │       ├── publish_docker_images.yml  # CI/CD: builds and publishes Docker images on release
@@ -143,7 +143,7 @@ The `azm_app_service` module uses a PowerShell `local-exec` provisioner (`script
 - **Trigger:** Pull request against `main`
 - **Action:** Calls the reusable `checks.yaml` from `rios0rios0/pipelines`, granting `contents: read` per job. Runs the shared checks; it does not run `terraform validate`.
 
-No Terraform validation workflow runs on pull requests at present; validation is done locally by the developer before opening a PR. The `checks.yaml` and `claude-review.yaml` workflows do run on every pull request, but they run the shared checks and review the change rather than validating the modules.
+No Terraform validation workflow runs on pull requests at present; validation is done locally by the developer before opening a PR. The `checks.yaml` workflow runs on pull requests targeting `main` and `claude-review.yaml` runs on every pull request, but they run the shared checks and review the change rather than validating the modules.
 
 ## Coding Conventions
 

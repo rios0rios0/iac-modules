@@ -1,3 +1,0 @@
-kind: 'Changed'
-body: 'refreshed the secret-hygiene bullet in `.github/skills/code-review/SKILL.md` to name credential prefixes in words instead of gitleaks-matchable shapes'
-time: '2026-09-07T10:15:30.667788990Z'
