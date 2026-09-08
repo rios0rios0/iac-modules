@@ -8,6 +8,19 @@ nothing.
 
 ## [Unreleased]
 
+## [0.5.2] - 2026-09-08
+
+### Changed
+
+- changed both `chlog new` examples in the AI-assistant instruction block of `CLAUDE.md` and `.github/copilot-instructions.md` to `--body '<past-tense description>'`: changelog bodies here are written in simple past tense, and the body is single-quoted because it carries backticks that a double-quoted shell argument would command-substitute, and added the line telling the reader to write an apostrophe inside the single-quoted body as `'\''`, since bodies here carry possessives, and switched the 6 other hand-written `chlog new` examples in `CLAUDE.md`, `.github/copilot-instructions.md`, `CONTRIBUTING.md`, and `.github/skills/code-review/SKILL.md` to the same single-quoted body argument
+- re-wrapped the secret-hygiene bullet of the `code-review` skill to the file's line width without changing a word of it
+- refreshed `CLAUDE.md` and `.github/copilot-instructions.md` to document the `checks.yaml` pull-request workflow
+- reworded the secret-hygiene bullet in the `code-review` skill to name the vendor behind each credential prefix and to drop the hyphen from the Slack example, the one shape the shared Gitleaks history scan matches on its own
+
+### Fixed
+
+- regenerated 1 hand-written changelog fragment with `chlog new`, keeping its kind and body, so the filename and the `time` field agree and the next release orders the entries correctly
+
 ## [0.5.1] - 2026-09-07
 
 ### Changed
