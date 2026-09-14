@@ -8,6 +8,12 @@ nothing.
 
 ## [Unreleased]
 
+## [0.5.4] - 2026-09-14
+
+### Changed
+
+- corrected the AWS runner image's Terraform version in `CLAUDE.md` and `.github/copilot-instructions.md` from `1.16.1` to `1.16.2`
+
 ## [0.5.3] - 2026-09-10
 
 ### Changed

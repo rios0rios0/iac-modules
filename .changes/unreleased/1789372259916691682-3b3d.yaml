@@ -1,3 +1,0 @@
-kind: 'Changed'
-body: 'corrected the AWS runner image''s Terraform version in `CLAUDE.md` and `.github/copilot-instructions.md` from `1.16.1` to `1.16.2`'
-time: '2026-09-14T07:50:59.916629084Z'
