@@ -1,0 +1,3 @@
+kind: 'Changed'
+body: 'changed the Docker base image `hashicorp/terraform` from `1.16.4` to `1.16.5`'
+time: '2026-10-03T09:11:03.329854042Z'
