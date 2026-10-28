@@ -8,7 +8,11 @@
 
 ```
 iac-modules/
+├── .changes/
+│   └── unreleased/                    # chlog fragments; CHANGELOG.md is generated from them
 ├── .github/
+│   ├── copilot-instructions.md
+│   ├── skills/code-review/SKILL.md    # Repo-tailored pull-request review skill
 │   └── workflows/
 │       ├── checks.yaml                # Runs shared checks on pull requests targeting main via rios0rios0/pipelines
 │       ├── claude-mention.yaml        # Responds to @claude mentions via rios0rios0/pipelines
@@ -40,8 +44,11 @@ iac-modules/
 │       ├── main.tf
 │       ├── variables.tf
 │       └── outputs.tf
+├── AGENTS.md                          # Shared agent instructions; CLAUDE.md imports it
 ├── CHANGELOG.md
+├── CLAUDE.md                          # Only the `@AGENTS.md` import
 ├── CONTRIBUTING.md
+├── LICENSE
 └── README.md
 ```
 
@@ -55,13 +62,13 @@ iac-modules/
 
 | Component | Version / Details |
 |---|---|
-| Terraform | 1.16.3 (AWS image), 1.6.3 (Azure image) |
-| Terragrunt | 0.53.2 |
+| Terraform | Pinned per image: the `FROM hashicorp/terraform:<ver>` tag in `terragrunt-aws.Dockerfile`, `TERRAFORM_VER` in `terragrunt-azm.Dockerfile` (the two differ) |
+| Terragrunt | `TERRAGRUNT_VER` in each Dockerfile |
 | Azure Provider | `azurerm` (latest) |
 | PowerShell Core | `pwsh` — used for SCM integration scripts |
-| Docker | `hashicorp/terraform:1.16.3` base (AWS), `azurestack/powershell` base (Azure) |
+| Docker | `hashicorp/terraform` base (AWS), `azurestack/powershell` base (Azure) |
 | Azure CLI | Installed in `terragrunt-azm` image |
-| AWS CLI | 1.46.1, hash-locked in `containers/requirements.txt` (`terragrunt-aws` image) |
+| AWS CLI | Hash-locked in `containers/requirements.txt` (`terragrunt-aws` image) |
 
 ## Development Workflow
 
@@ -75,7 +82,7 @@ iac-modules/
    ```
    `terraform validate` must run inside a module directory — the repo has no root-level `.tf` files.
 5. Add a changelog fragment: `chlog new --kind <Kind> --body '...'`. Never edit `CHANGELOG.md` — it is generated from the fragments.
-6. Commit following the [commit conventions](https://github.com/rios0rios0/guide/wiki/Life-Cycle/Git-Flow) (Conventional Commits: `feat:`, `fix:`, `chore:`, etc.).
+6. Commit following the [commit conventions](https://github.com/rios0rios0/guide/wiki/Git-Flow) (Conventional Commits: `feat:`, `fix:`, `chore:`, etc.).
 7. Open a pull request against `main`.
 
 ## Build Commands
@@ -130,8 +137,8 @@ The `azm_app_service` module uses a PowerShell `local-exec` provisioner (`script
 **Workflow:** `.github/workflows/publish_docker_images.yml`
 
 - **Trigger:** GitHub release published
-- **Action:** Builds both `terragrunt-aws` and `terragrunt-azm` Docker images and pushes them to GitHub Packages (`docker.pkg.github.com`) tagged with the release version and `latest`.
-- **Registry:** `ghcr.io/rios0rios0/iac-modules/<image-name>` (the workflow currently uses the legacy `docker.pkg.github.com` endpoint — update to `ghcr.io` when modernizing the pipeline)
+- **Action:** Builds both `terragrunt-aws` and `terragrunt-azm` Docker images, tagged with the release version and `latest`, and pushes only the release-version tag to GitHub Packages.
+- **Registry:** `docker.pkg.github.com/rios0rios0/iac-modules/<image-name>`, the legacy GitHub Packages endpoint (a move to `ghcr.io` is planned, not done).
 
 **Workflow:** `.github/workflows/release.yaml`
 
