@@ -1,0 +1,3 @@
+kind: 'Changed'
+body: 'moved the agent instructions from `CLAUDE.md` to `AGENTS.md`, keeping a `CLAUDE.md` that imports it, and refreshed `AGENTS.md`, `.github/copilot-instructions.md`, `.github/skills/code-review/SKILL.md`, `README.md` and `CONTRIBUTING.md` to point at the Dockerfiles for pinned versions, correct the image-publishing description and the validate command, and reference `AGENTS.md` instead of `CLAUDE.md`'
+time: '2026-10-28T23:50:43.604163372Z'

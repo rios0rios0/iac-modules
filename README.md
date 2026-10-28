@@ -14,11 +14,11 @@ A collection of reusable Terraform modules, Terragrunt container images, and pre
 - **Azure Container Registry module** (`azm_container_registry`) -- creates an ACR instance with token-based authentication, scope maps, and a push webhook for image promotion workflows
 - **Azure Storage Container module** (`azm_storage_container`) -- sets up a resource group, Standard LRS storage account (TLS 1.2, private access), and a storage container (defaults to `terraform-tfstates` for remote state)
 - **App Service stack** (`azm_app_service`) -- a ready-to-use composition that wires the App Service module with all required variables, suitable for direct use with Terragrunt
-- **Terragrunt container images** -- Docker images bundling Terraform 1.6.3 + Terragrunt 0.53.2 with either Azure CLI (`terragrunt-azm`) or AWS CLI (`terragrunt-aws`) pre-installed, with a flexible entrypoint that accepts both directory-based and command-based invocations
+- **Terragrunt container images** -- Docker images bundling Terraform + Terragrunt 0.53.2 with either Azure CLI (`terragrunt-azm`) or AWS CLI (`terragrunt-aws`) pre-installed, with a flexible entrypoint that accepts both directory-based and command-based invocations
 
 ## Technologies
 
-- [Terraform](https://www.terraform.io/) 1.6.3
+- [Terraform](https://www.terraform.io/) (pinned per image in `containers/`: 1.6.3 in `terragrunt-azm`, the `hashicorp/terraform` base tag in `terragrunt-aws`)
 - [Terragrunt](https://terragrunt.gruntwork.io/) 0.53.2
 - [Azure Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest) (`azurerm`)
 - [PowerShell Core](https://github.com/PowerShell/PowerShell) (`pwsh`) for SCM integration scripts

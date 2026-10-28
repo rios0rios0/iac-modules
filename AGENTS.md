@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI coding agents (Claude Code, Codex, Cursor, GitHub Copilot) when working with code in this repository.
 
 ## Overview
 
@@ -30,9 +30,9 @@ docker build -t terragrunt-aws -f containers/terragrunt-aws.Dockerfile container
 
 ## Versions
 
-- Terraform: 1.16.3 (AWS image), 1.6.3 (Azure image)
-- Terragrunt: 0.53.2
-- AWS CLI: 1.46.1, hash-locked in `containers/requirements.txt` (AWS image)
+Pinned versions live in the sources, not here: Terraform and Terragrunt in `containers/terragrunt-*.Dockerfile`
+(the AWS image's `FROM hashicorp/terraform:<ver>` tag is bumped automatically; the Azure image pins `TERRAFORM_VER`,
+so the two differ), and the hash-locked AWS CLI in `containers/requirements.txt`.
 
 ## Conventions
 
@@ -44,12 +44,10 @@ docker build -t terragrunt-aws -f containers/terragrunt-aws.Dockerfile container
 
 ## CI/CD
 
-- `publish_docker_images.yml` — builds and pushes container images to GitHub Packages on release.
-- `release.yaml` — triggers on push to `main`, calls reusable workflow from `rios0rios0/pipelines` to create version tags.
-- `checks.yaml` — runs on pull requests targeting `main` via `rios0rios0/pipelines`; the shared checks job, granted `contents: read` per job.
-- `claude-review.yaml` — runs on every pull request via `rios0rios0/pipelines`; reviews the change, does not validate the modules.
-- `claude-mention.yaml` — responds to `@claude` mentions on issues, PRs, and reviews.
-- No Terraform validation workflow runs on PRs; validate locally.
+- No workflow runs `terraform validate` on pull requests (they run the shared `rios0rios0/pipelines` checks and an
+  automated review), so validate every touched module locally.
+- `publish_docker_images.yml` builds both runner images only when a GitHub release is published.
+- `release.yaml` creates version tags on push to `main` via `rios0rios0/pipelines`.
 
 <!-- chlog:start -->
 ## Changelog (chlog) — MANDATORY

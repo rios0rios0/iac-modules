@@ -17,12 +17,12 @@ development practices, refer to the **[Development Guide](https://github.com/rio
 3. Make your changes to the relevant module under the module directory
 4. Validate:
    ```bash
-   terraform fmt -recursive
-   terraform validate
+   terraform fmt -recursive                    # from the repository root
+   cd modules/<name> && terraform validate     # inside each touched module; the root has no .tf files
    ```
 5. Add a changelog fragment — never edit `CHANGELOG.md`, which is generated from them:
    ```bash
    chlog new --kind Added --body 'added the thing that was not there before'
    ```
-6. Commit following the [commit conventions](https://github.com/rios0rios0/guide/wiki/Life-Cycle/Git-Flow)
+6. Commit following the [commit conventions](https://github.com/rios0rios0/guide/wiki/Git-Flow)
 7. Open a pull request against `main`
