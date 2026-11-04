@@ -8,6 +8,13 @@ nothing.
 
 ## [Unreleased]
 
+## [0.5.10] - 2026-11-04
+
+### Changed
+
+- changed the Docker base image `hashicorp/terraform` from `1.16.6` to `1.17.1`
+- moved the agent instructions from `CLAUDE.md` to `AGENTS.md`, keeping a `CLAUDE.md` that imports it, and refreshed `AGENTS.md`, `.github/copilot-instructions.md`, `.github/skills/code-review/SKILL.md`, `README.md` and `CONTRIBUTING.md` to point at the Dockerfiles for pinned versions, correct the image-publishing description and the validate command, and reference `AGENTS.md` instead of `CLAUDE.md`
+
 ## [0.5.9] - 2026-10-21
 
 ### Changed
