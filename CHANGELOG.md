@@ -8,6 +8,12 @@ nothing.
 
 ## [Unreleased]
 
+## [0.5.11] - 2026-11-16
+
+### Changed
+
+- changed the Docker base image `hashicorp/terraform` from `1.17.1` to `1.17.2`
+
 ## [0.5.10] - 2026-11-04
 
 ### Changed
